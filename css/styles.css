@@ -1066,6 +1066,23 @@ section { padding: 100px 0; }
 
 .footer-social svg { width: 16px; height: 16px; }
 
+/* Constrain ALL footer SVGs to prevent blowup */
+.footer svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.footer .logo svg {
+  width: 36px;
+  height: 36px;
+}
+
+.footer .footer-social a svg {
+  width: 16px;
+  height: 16px;
+}
+
 .footer h4 {
   color: var(--white);
   margin-bottom: 20px;
@@ -1115,8 +1132,8 @@ section { padding: 100px 0; }
 
 /* ===== SERVICE PAGE STYLES ===== */
 .page-hero {
-  padding: calc(var(--header-height) + 60px) 0 60px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
+  padding: calc(var(--header-height) + 80px) 0 80px;
+  background: var(--primary);
   color: var(--white);
   text-align: center;
   position: relative;
@@ -1127,8 +1144,28 @@ section { padding: 100px 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 80%, rgba(0,201,167,0.1), transparent);
+  background:
+    linear-gradient(135deg, rgba(10,37,64,0.92), rgba(15,58,92,0.8));
+  z-index: 1;
 }
+
+.page-hero > * { position: relative; z-index: 2; }
+
+/* Video background for service page heroes */
+.page-hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.page-hero-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Constrain all SVGs in page-hero too */
+.page-hero svg { width: 14px; height: 14px; }
 
 .page-hero .section-label {
   background: rgba(255,209,102,0.15);
@@ -1196,10 +1233,19 @@ section { padding: 100px 0; }
 .sidebar-card h3 { font-size: 1.1rem; margin-bottom: 16px; }
 .sidebar-card .btn { width: 100%; margin-top: 12px; }
 
-.sidebar-card svg {
+.sidebar-card svg,
+.service-sidebar svg {
   width: 20px;
   height: 20px;
+  max-width: 20px;
+  max-height: 20px;
   flex-shrink: 0;
+}
+
+/* Override any inline SVGs that may be larger */
+.service-detail svg:not(.logo svg) {
+  max-width: 24px;
+  max-height: 24px;
 }
 
 .sidebar-card p { font-size: 0.9rem; line-height: 1.6; }
