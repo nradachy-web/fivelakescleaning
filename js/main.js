@@ -156,16 +156,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- Parallax effect on hero (subtle) ---
-  const hero = document.querySelector('.hero');
-  const heroImage = document.querySelector('.hero-image');
-  if (hero && heroImage && window.innerWidth > 768) {
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight) {
-        heroImage.style.transform = `translateY(${y * 0.08}px)`;
-      }
-    }, { passive: true });
+  // --- Pause hero video when out of view for performance ---
+  const heroVideo = document.querySelector('.hero-video-bg video');
+  if (heroVideo) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          heroVideo.play();
+        } else {
+          heroVideo.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+    videoObserver.observe(heroVideo);
   }
 });
 

@@ -351,6 +351,7 @@ section { padding: 100px 0; }
     radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,201,167,0.15), transparent),
     radial-gradient(ellipse 60% 50% at 20% 80%, rgba(27,107,147,0.2), transparent),
     radial-gradient(ellipse 40% 40% at 90% 10%, rgba(255,209,102,0.08), transparent);
+  z-index: 1;
 }
 
 .hero::after {
@@ -359,9 +360,93 @@ section { padding: 100px 0; }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120px;
+  height: 160px;
   background: linear-gradient(to top, var(--white), transparent);
   z-index: 2;
+}
+
+/* Video Background */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(10,37,64,0.88) 0%, rgba(15,58,92,0.75) 40%, rgba(10,37,64,0.85) 100%);
+}
+
+/* Centered Hero Layout */
+.hero-centered {
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+
+.hero-centered .hero-description {
+  margin: 0 auto 36px;
+  max-width: 580px;
+  font-size: 1.15rem;
+}
+
+.hero-centered .hero-buttons {
+  justify-content: center;
+}
+
+.hero-centered .hero-trust {
+  justify-content: center;
+}
+
+/* Hero Stats Row */
+.hero-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+  animation: fadeSlideUp 0.6s 1s both;
+}
+
+.hero-stat-pill {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: 16px 28px;
+  text-align: center;
+  transition: all var(--transition);
+}
+
+.hero-stat-pill:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-2px);
+}
+
+.hero-stat-pill strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+.hero-stat-pill span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .hero-grid {
@@ -370,7 +455,7 @@ section { padding: 100px 0; }
   gap: 48px;
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-content { color: var(--white); }
@@ -1353,11 +1438,11 @@ section { padding: 100px 0; }
 }
 
 /* Hero entrance animations */
-.hero-content .hero-badge { animation: fadeSlideUp 0.6s 0.2s both; }
-.hero-content h1 { animation: fadeSlideUp 0.6s 0.35s both; }
-.hero-content .hero-description { animation: fadeSlideUp 0.6s 0.5s both; }
-.hero-content .hero-buttons { animation: fadeSlideUp 0.6s 0.65s both; }
-.hero-content .hero-trust { animation: fadeSlideUp 0.6s 0.8s both; }
+.hero-content .hero-badge { animation: fadeSlideUp 0.7s 0.2s both; }
+.hero-content h1 { animation: fadeSlideUp 0.7s 0.4s both; }
+.hero-content .hero-description { animation: fadeSlideUp 0.7s 0.6s both; }
+.hero-content .hero-buttons { animation: fadeSlideUp 0.7s 0.8s both; }
+.hero-content .hero-trust { animation: fadeSlideUp 0.7s 1.0s both; }
 .hero-image { animation: fadeSlideUp 0.8s 0.4s both; }
 
 @keyframes fadeSlideUp {
@@ -1389,6 +1474,10 @@ section { padding: 100px 0; }
   .hero-description { margin: 0 auto 36px; }
   .hero-buttons { justify-content: center; }
   .hero-trust { justify-content: center; flex-wrap: wrap; }
+
+  .hero-centered { padding: 20px 0 40px; }
+
+  .hero-stats-row { flex-wrap: wrap; }
 
   .hero-image {
     max-width: 400px;
@@ -1439,6 +1528,12 @@ section { padding: 100px 0; }
 
   .hero { min-height: auto; padding: 120px 0 100px; }
 
+  .hero-centered { padding: 10px 0 30px; }
+
+  .hero-stats-row { gap: 10px; }
+  .hero-stat-pill { padding: 12px 18px; }
+  .hero-stat-pill strong { font-size: 1.2rem; }
+
   .hero-image { max-width: 320px; }
   .hero-image-wrapper { max-height: 360px; }
 
@@ -1479,6 +1574,9 @@ section { padding: 100px 0; }
 
   .hero-buttons { flex-direction: column; }
   .hero-buttons .btn { width: 100%; }
+
+  .hero-stats-row { flex-direction: column; align-items: center; }
+  .hero-stat-pill { width: 100%; max-width: 200px; }
 
   .hero-image { max-width: 260px; }
 
