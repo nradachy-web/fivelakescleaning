@@ -251,15 +251,28 @@ section { padding: 100px 0; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.3rem;
-  font-weight: 800;
   color: var(--primary);
   z-index: 1001;
-  letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
-.logo svg { width: 36px; height: 36px; }
-.logo span { color: var(--secondary); }
+.logo svg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.logo-text span {
+  color: var(--secondary);
+}
 
 .nav-links {
   display: flex;
@@ -1167,6 +1180,44 @@ section { padding: 100px 0; }
 /* Constrain all SVGs in page-hero too */
 .page-hero svg { width: 14px; height: 14px; }
 
+/* Contact page hero overrides */
+.page-hero--contact { padding: calc(var(--header-height) + 48px) 0 48px; }
+
+.page-hero-headline {
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.page-hero-subtext {
+  color: rgba(255,255,255,0.7);
+  max-width: 560px;
+  margin: 0 auto 20px;
+  font-size: 1.05rem;
+}
+
+.page-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-hero-badges span,
+.page-hero-badges .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
 .page-hero .section-label {
   background: rgba(255,209,102,0.15);
   color: var(--gold);
@@ -1552,7 +1603,8 @@ section { padding: 100px 0; }
   section { padding: 72px 0; }
 
   .nav-links,
-  .nav-cta .btn { display: none; }
+  .nav-cta .btn,
+  .nav-cta .nav-phone { display: none; }
   .menu-toggle { display: flex; }
 
   .nav-links.mobile-open {
@@ -1560,16 +1612,55 @@ section { padding: 100px 0; }
     flex-direction: column;
     position: fixed;
     inset: 0;
-    background: var(--white);
-    padding: 100px 24px 40px;
-    gap: 8px;
+    background: var(--primary);
+    padding: 0 24px;
+    padding-top: calc(var(--header-height) + 20px);
+    gap: 4px;
     z-index: 999;
+    animation: mobileNavIn 0.3s ease;
   }
 
   .nav-links.mobile-open a {
-    font-size: 1.1rem;
-    padding: 14px 20px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 16px 20px;
     border-radius: var(--radius-sm);
+    color: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-links.mobile-open a:hover,
+  .nav-links.mobile-open a.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Mobile nav CTA at bottom */
+  .nav-links.mobile-open::after {
+    content: 'Call (586) 872-6830';
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--accent), #FF8F65);
+    border-radius: var(--radius-full);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  /* Header bg when mobile open */
+  .header:has(.mobile-open) {
+    background: var(--primary);
+  }
+
+  .header:has(.mobile-open) .logo { color: var(--white); }
+  .header:has(.mobile-open) .logo-text span { color: var(--secondary); }
+  .header:has(.mobile-open) .menu-toggle span { background: var(--white); }
+
+  @keyframes mobileNavIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .hero { min-height: auto; padding: 120px 0 100px; }
