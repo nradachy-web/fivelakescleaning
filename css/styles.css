@@ -1111,6 +1111,48 @@ section { padding: 100px 0; }
 .sidebar-card h3 { font-size: 1.1rem; margin-bottom: 16px; }
 .sidebar-card .btn { width: 100%; margin-top: 12px; }
 
+.sidebar-card svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-card p { font-size: 0.9rem; line-height: 1.6; }
+
+.sidebar-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-card ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.sidebar-card ul li svg {
+  color: var(--secondary);
+}
+
+/* Service page content images */
+.service-content img {
+  border-radius: var(--radius-md);
+  margin: 24px 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* Sticky sidebar */
+@media (min-width: 1025px) {
+  .service-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+    align-self: start;
+  }
+}
+
 .sidebar-nav { display: flex; flex-direction: column; gap: 4px; }
 
 .sidebar-nav a {
